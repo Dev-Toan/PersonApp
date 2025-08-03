@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:background="@drawable/bg_gradien">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/btn_back"
+            android:scaleType="centerCrop"
+            android:backgroundTint="#00000000"
+            android:contentDescription="Quay lại"
+
+            />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="-15dp"
+        >
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="21"
+            android:textColor="@color/white"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:layout_marginRight="-25dp"
+            android:layout_marginLeft="15dp"/>
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/txtDayofWeek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thứ 3"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txtmonthofyear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tháng 6 năm 2025"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnAddEvent"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/btnadd"
+            android:backgroundTint="#00000000"
+            android:contentDescription="add"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnNowDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hôm nay"
+            android:backgroundTint="#684BA6"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/btnWeekNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tuần này"
+            android:backgroundTint="#684BA6"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:id="@+id/btnMonthNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tháng này"
+            android:backgroundTint="#684BA6"
+            android:layout_marginRight="10sp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="10dp"
+        android:padding="1dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTatCaSuKien"
+                android:layout_width="40dp"
+                android:layout_height="100dp"
+                android:text="Tất cả sự kiện"
+                android:gravity="center"
+                android:textColor="#AAAAAA"
+                />
+
+            <TextView
+                android:id="@+id/txtSapDienRa"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Sắp diễn ra"
+                android:gravity="center"
+                android:textColor="#AAAAAA"/>
+
+            <TextView
+                android:id="@+id/txtDaHoanThanh"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="Đã hoàn thành"
+                android:textColor="#AAAAAA"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEvents"
+            android:layout_width="match_parent"
+            android:layout_height="530dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/rectangle1"
+            android:backgroundTint="#50000000"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

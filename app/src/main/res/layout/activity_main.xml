@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alignmentMode="alignMargins"
+    android:columnCount="2"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:rowCount="2"
+    tools:context=".MainActivity"
+    android:background="@drawable/bg_gradien"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnViewCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sự kiện hôm nay"
+            android:backgroundTint="#66CC66"
+            />
+
+        <Button
+            android:id="@+id/btnViewAllEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Xem tất cả sự kiện"
+            android:backgroundTint="#66CC66"
+            android:layout_marginLeft="12dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button 3"
+            android:backgroundTint="#66CC66"/>
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button 4"
+            android:backgroundTint="#66CC66"
+            android:layout_marginLeft="12dp"/>
+
+    </LinearLayout>
+</LinearLayout>

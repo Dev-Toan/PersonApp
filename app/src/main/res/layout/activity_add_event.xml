@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradien"
+    android:id="@+id/main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm sự kiện mới"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"/>
+
+        <EditText
+            android:id="@+id/edtTieuDe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiêu đề"
+            android:inputType="text"
+            android:background="@drawable/rectangle2"
+            android:padding="12dp"
+            android:textColor="#001100"
+            android:textColorHint="#001100"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/edtNoiDung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nội dung"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:background="@drawable/rectangle2"
+            android:padding="12dp"
+            android:textColor="#001100"
+            android:textColorHint="#001100"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/edtNgay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ngày (dd/MM/yyyy)"
+            android:inputType="date"
+            android:background="@drawable/rectangle2"
+            android:padding="12dp"
+            android:textColor="#001100"
+            android:textColorHint="#001100"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/edtStartTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giờ bắt đầu (HH:mm)"
+            android:inputType="time"
+            android:background="@drawable/rectangle2"
+            android:padding="12dp"
+            android:textColor="#001100"
+            android:textColorHint="#001100"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/edtEndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giờ kết thúc (HH:mm)"
+            android:inputType="time"
+            android:background="@drawable/rectangle2"
+            android:padding="12dp"
+            android:textColor="#001100"
+            android:textColorHint="#001100"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đã hoàn thành"
+                android:textColor="@color/white"
+                android:layout_marginRight="16dp"/>
+
+            <CheckBox
+                android:id="@+id/checkboxStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lưu sự kiện"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</ScrollView>
