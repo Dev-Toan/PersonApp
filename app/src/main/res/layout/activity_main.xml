@@ -46,11 +46,11 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnMoneyManager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button 3"
+            android:text="Quản lý chi tiêu"
             android:backgroundTint="#66CC66"/>
 
         <Button

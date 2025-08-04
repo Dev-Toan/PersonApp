@@ -16,10 +16,12 @@ public class Event implements Serializable {
     boolean activity = true;
     boolean status = true;
     boolean isExpanded = false;
+    boolean isNotification;
 
 
 
-    public Event(Time endTime, Date ngay, String noidung, Time startTime, boolean status, String tieude, boolean activity) {
+
+    public Event(Time endTime, Date ngay, String noidung, Time startTime, boolean status, String tieude, boolean activity, boolean isNotification) {
         this.endTime = endTime;
         this.ngay = ngay;
         this.noidung = noidung;
@@ -27,6 +29,7 @@ public class Event implements Serializable {
         this.status = status;
         this.tieude = tieude;
         this.activity = activity;
+        this.isNotification = isNotification;
     }
 
     public Time getEndTime() {
@@ -84,5 +87,14 @@ public class Event implements Serializable {
 
     public void setActivity(boolean activity) {
         this.activity = activity;
+    }
+
+
+    public boolean isNotification() {
+        return isNotification;
+    }
+
+    public void setNotification(boolean notification) {
+        isNotification = notification;
     }
 }

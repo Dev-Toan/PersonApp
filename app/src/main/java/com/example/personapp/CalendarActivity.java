@@ -90,10 +90,10 @@ public class CalendarActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.calendar);
 
 
-//        btnBack.setOnClickListener(v -> finish());
-            btnBack.setOnClickListener(v ->{
 
+            btnBack.setOnClickListener(v ->{
                 finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             });
 
         btnseeall.setOnClickListener(new View.OnClickListener() {
