@@ -36,7 +36,7 @@
             android:enabled="true"/>
         <receiver android:name=".EventNotification"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="true"/>
 
 
     </application>

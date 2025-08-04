@@ -62,7 +62,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         holder.txtEndTime.setText(String.format("%02d:%02d",event.getEndTime().getHours(),event.getEndTime().getMinutes()));
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         holder.txtNgay.setText(sdf.format(event.getNgay()));
-        holder.switch1.setChecked(event.isActivity());
+
+
+        //holder.switch1.setChecked(event.isActivity());
 
 
         // Hiệu ứng thu nhỏ/mở rộng

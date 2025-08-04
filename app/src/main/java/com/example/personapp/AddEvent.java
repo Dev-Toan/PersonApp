@@ -47,6 +47,13 @@ public class AddEvent extends AppCompatActivity {
         btnHuy = findViewById(R.id.btnHuy);
         txtThemSuKien = findViewById(R.id.txtThemSuKien);
 
+
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String currentDate = sdf.format(calendar.getTime());
+        edtNgay.setText(currentDate);
+
         // Kiểm tra xem có phải edit mode không
         Intent intent = getIntent();
         if (intent.getBooleanExtra("isEdit", false)) {
