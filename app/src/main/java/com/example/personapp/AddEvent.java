@@ -46,6 +46,7 @@ public class AddEvent extends AppCompatActivity {
                 boolean status = checkboxStatus.isChecked();
                 boolean activity = true;
 
+
                 if (tieude.isEmpty() || noidung.isEmpty() || ngayStr.isEmpty() || startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
                     Toast.makeText(AddEvent.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
                     return;
@@ -60,7 +61,8 @@ public class AddEvent extends AppCompatActivity {
                     Time startTime = new Time(timeFormat.parse(startTimeStr).getTime());
                     Time endTime = new Time(timeFormat.parse(endTimeStr).getTime());
 
-                    Event event = new Event(endTime, ngay, noidung, startTime, status, tieude, activity);
+                    boolean isNotification = true;
+                    Event event = new Event(endTime, ngay, noidung, startTime, status, tieude, status, activity);
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("event", event);
                     setResult(Activity.RESULT_OK, resultIntent);

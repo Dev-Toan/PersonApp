@@ -1,6 +1,7 @@
 package com.example.personapp;
 
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.text.Layout;
@@ -12,6 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +25,24 @@ import java.util.Locale;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
     private ArrayList<Event> events;
 
+
     public EventAdapter(ArrayList<Event> events) {
         this.events = events;
     }
 
     private boolean hideSwitch = false;
+
+
+    public EventAdapter(Context context) {
+        this.context = context;
+    }
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    private Context context;
+
+
 
     @NonNull
     @Override
@@ -47,6 +62,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         holder.txtNgay.setText(sdf.format(event.getNgay()));
         holder.switch1.setChecked(event.isActivity());
+
 
         // Hiệu ứng thu nhỏ/mở rộng
         if (event.isExpanded) {
@@ -87,6 +103,31 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         }else {
             holder.switch1.setVisibility(View.VISIBLE);
         }
+
+
+
+
+        holder.switch1.setOnCheckedChangeListener(null);
+        holder.switch1.setChecked(event.isNotification());
+
+        holder.switch1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            event.setNotification(isChecked);
+
+            if (context instanceof viewAllEvent){
+                viewAllEvent activity = (viewAllEvent) context;
+
+                if(isChecked){
+                    activity.schedeleEventNotification(context, event, event.hashCode());
+                } else {
+                    activity.cancelEventNotification(context, event.hashCode());
+                }
+
+
+
+            }
+
+
+        });
 
     }
 
