@@ -576,4 +576,7 @@ public class viewAllEvent extends AppCompatActivity implements PopupMenuHelper.P
         Toast.makeText(this, "Đã xóa sự kiện: " + event.getTieude(), Toast.LENGTH_SHORT).show();
     }
 
+
+    // hehehe
+
 }
