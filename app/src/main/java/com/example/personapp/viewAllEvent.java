@@ -40,7 +40,7 @@ public class viewAllEvent extends AppCompatActivity implements PopupMenuHelper.P
 
     TextView txtTatCaSuKien;
     TextView txtSapDienRa;
-    TextView txtDaHoanThanh;
+    TextView txtDaHoanThanh, txtDayofWeek, txtmonthofyear;
 
     private String currentFilter = "all";
 
@@ -104,6 +104,8 @@ public class viewAllEvent extends AppCompatActivity implements PopupMenuHelper.P
         txtTatCaSuKien = findViewById(R.id.txtTatCaSuKien);
         txtSapDienRa = findViewById(R.id.txtSapDienRa);
         txtDaHoanThanh = findViewById(R.id.txtDaHoanThanh);
+        txtDayofWeek= findViewById(R.id.txtDayofWeek);
+        txtmonthofyear=findViewById(R.id.txtmonthofyear);
 
 
 
@@ -129,6 +131,9 @@ public class viewAllEvent extends AppCompatActivity implements PopupMenuHelper.P
         recyclerView.setAdapter(adapter);
 
         updateFilteredEvents();
+
+
+        getTodayVietnamese();
 
 
 
@@ -577,6 +582,18 @@ public class viewAllEvent extends AppCompatActivity implements PopupMenuHelper.P
     }
 
 
-    // hehehe
+    private void getTodayVietnamese() {
+        Calendar calendar = Calendar.getInstance();
+        String[] thu = {"Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"};
+
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1 = CN, 2 = Thứ 2, ...
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1; // Tháng bắt đầu từ 0
+        int year = calendar.get(Calendar.YEAR);
+
+        txtDayofWeek.setText(thu[dayOfWeek - 1]);
+        txtmonthofyear.setText(String.format("%d Tháng %d %d", day, month, year));
+//        return String.format("%s, %d Tháng %d %d", thu[dayOfWeek - 1], day, month, year);
+    }
 
 }

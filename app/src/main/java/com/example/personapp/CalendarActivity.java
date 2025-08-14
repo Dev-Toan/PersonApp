@@ -1,16 +1,26 @@
 package com.example.personapp;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -57,7 +67,7 @@ public class CalendarActivity extends AppCompatActivity {
 
     private ArrayList<Event> allEvents = new ArrayList<>();
 
-
+    LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,8 +117,50 @@ public class CalendarActivity extends AppCompatActivity {
 
 
 
-        fetchWeather();
-        setIconweather();
+        // yeu cau quyen gps
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            }, 1);
+            return;
+        }
+
+        // Khởi tạo LocationManager
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager == null) {
+            Toast.makeText(this, "Không tìm thấy GPS!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // lay vi tri
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000,1, new LocationListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onLocationChanged(@NonNull Location location) {
+                double currentLat = location.getLatitude();
+                double currentLon = location.getLongitude();
+
+                //getAddressFromLatLng(currentLat, currentLon);
+                //txtGlobal.setText(currentLat + ", " + currentLon);
+
+                fetchWeather(currentLat, currentLon);
+
+
+
+
+            }
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) { }
+            @Override
+            public void onProviderEnabled(String provider) { }
+            @Override
+            public void onProviderDisabled(String provider) { }
+        });
+
+
+
 
 
 
@@ -135,13 +187,18 @@ public class CalendarActivity extends AppCompatActivity {
         List<Event> todayEvents = getTodayEvents();
         displayFourEvents(todayEvents);
 
+
+
+
     }
 
 
-    private void fetchWeather() {
-        String city = "Hanoi";
+    public void fetchWeather(double currentLat, double currentLon) {
+        //String city = "Hanoi";
         String key = "fd9e8f768d512169fd4e64dafcc20a12";
-        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key+ "&units=metric";
+        //String url = "https://api.openweathermap.org/data/2.5/forecast?lat=" + currentLat + "&lon=" + currentLon + "&appid=" + key + "&units=metric&lang=vi";
+        String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + currentLat + "&lon=" + currentLon + "&appid=" + key + "&units=metric&lang=vi";
+        //String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key+ "&units=metric";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -157,7 +214,11 @@ public class CalendarActivity extends AppCompatActivity {
                             String description = weather.getString("description");
 
                             nhietdo.setText(String.format("%.0f °C", temp));
-                            textweather.setText(translateWeather(description));
+                            //textweather.setText(translateWeather(description));
+                            textweather.setText(description);
+
+
+                            setIconweather();
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -179,7 +240,7 @@ public class CalendarActivity extends AppCompatActivity {
 
     }
 
-    private String translateWeather(String en){
+    public String translateWeather(String en){
         switch (en.toLowerCase()){
             case "clear sky":
                 return "Trời quang";
@@ -227,7 +288,7 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
 
-    private void setIconweather(){
+    public void setIconweather(){
         String temp = textweather.getText().toString();
         switch (temp){
             case "Trời quang":

@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thứ 3"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtmonthofyear"
@@ -88,46 +88,10 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnNowDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Hôm nay"
-            android:backgroundTint="#684BA6"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"/>
-
-        <Button
-            android:id="@+id/btnWeekNow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tuần này"
-            android:backgroundTint="#684BA6"
-            android:layout_marginRight="10dp"/>
-
-        <Button
-            android:id="@+id/btnMonthNow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tháng này"
-            android:backgroundTint="#684BA6"
-            android:layout_marginRight="10sp"
-            />
-
-    </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_marginRight="10dp"
         android:padding="1dp">
@@ -167,10 +131,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewEvents"
             android:layout_width="match_parent"
-            android:layout_height="530dp"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:background="@drawable/rectangle1"
-            android:backgroundTint="#50000000"/>
+            android:backgroundTint="#50000000"
+            />
 
     </LinearLayout>
 

@@ -46,11 +46,11 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btnMoneyManager"
+            android:id="@+id/btnWeather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Quản lý chi tiêu"
+            android:text="Thời tiết"
             android:backgroundTint="#66CC66"/>
 
         <Button

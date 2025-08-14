@@ -13,7 +13,12 @@ import androidx.core.app.NotificationCompat;
 public class EventNotification extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        String title = intent.getStringExtra("Sự kiện của bạn sắp bắt đầu");
+        //String title = intent.getStringExtra("Sự kiện của bạn sắp bắt đầu");
+        String title = intent.getStringExtra("title");
+
+        if(title == null){
+            title ="su kien sap dien ra";
+        }
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
