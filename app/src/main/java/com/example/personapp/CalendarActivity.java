@@ -195,7 +195,8 @@ public class CalendarActivity extends AppCompatActivity {
 
     public void fetchWeather(double currentLat, double currentLon) {
         //String city = "Hanoi";
-        String key = "fd9e8f768d512169fd4e64dafcc20a12";
+//        String key = "fd9e8f768d512169fd4e64dafcc20a12";
+        String key = ApiLinhTinh.WeatherKey;
         //String url = "https://api.openweathermap.org/data/2.5/forecast?lat=" + currentLat + "&lon=" + currentLon + "&appid=" + key + "&units=metric&lang=vi";
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + currentLat + "&lon=" + currentLon + "&appid=" + key + "&units=metric&lang=vi";
         //String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key+ "&units=metric";
@@ -214,16 +215,24 @@ public class CalendarActivity extends AppCompatActivity {
                             String description = weather.getString("description");
 
                             nhietdo.setText(String.format("%.0f °C", temp));
-                            //textweather.setText(translateWeather(description));
-                            textweather.setText(description);
+//                            textweather.setText(translateWeather(description));
+////                            textweather.setText(description);
+//
+//
+//                            setIconweather(textweather);
+                            // Dịch thời tiết và set icon ngay sau đó
+//                            String translatedWeather = translateWeather(description);
+                            String translatedWeather = processVietnameseWeather(description);
+                            textweather.setText(translatedWeather);
 
-
-                            setIconweather();
+                            // Gọi setIconweather với tham số để tránh lỗi timing
+                            setIconweather(translatedWeather);
 
                         } catch (Exception e) {
                             e.printStackTrace();
                             nhietdo.setText("--- °C");
                             textweather.setText("Lỗi dữ liệu!");
+                            iconweather.setImageResource(R.drawable.sun);
                         }
                     }
 
@@ -233,6 +242,7 @@ public class CalendarActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error){
                         nhietdo.setText("---");
                         textweather.setText("Lỗi kết nối!");
+                        iconweather.setImageResource(R.drawable.sun);
                     }
                 });
 
@@ -240,120 +250,292 @@ public class CalendarActivity extends AppCompatActivity {
 
     }
 
+    public String processVietnameseWeather(String description){
+        String lowerCase = description.toLowerCase().trim();
+
+        // Log để debug
+        System.out.println("Processing weather: '" + description + "' -> '" + lowerCase + "'");
+
+        // Xử lý trực tiếp tiếng Việt từ API
+        if (lowerCase.contains("trời quang") || lowerCase.contains("trời trong")) {
+            return "Trời quang";
+        } else if (lowerCase.contains("ít mây")) {
+            return "Ít mây";
+        } else if (lowerCase.contains("mây rải rác") || lowerCase.contains("mây tản mạn")) {
+            return "Mây rải rác";
+        } else if (lowerCase.contains("mây cụm") || lowerCase.contains("mây nhiều")) {
+            return "Mây nhiều";
+        } else if (lowerCase.contains("mây u ám") || lowerCase.contains("u ám")) {
+            return "Mây u ám";
+        } else if (lowerCase.contains("mưa nhẹ") || lowerCase.contains("mưa phùn")) {
+            return "Mưa nhẹ";
+        } else if (lowerCase.contains("mưa vừa") || lowerCase.equals("mưa")) {
+            return "Mưa";
+        } else if (lowerCase.contains("mưa to") || lowerCase.contains("mưa nặng") ||
+                lowerCase.contains("mưa cường độ nặng") || lowerCase.contains("mưa dữ dội")) {
+            return "Mưa to";
+        } else if (lowerCase.contains("dông") || lowerCase.contains("sấm")) {
+            return "Mưa dông";
+        } else if (lowerCase.contains("tuyết")) {
+            return "Tuyết";
+        } else if (lowerCase.contains("sương mù")) {
+            return "Sương mù";
+        } else if (lowerCase.contains("sương") || lowerCase.contains("mù")) {
+            return "Sương mù nhẹ";
+        } else if (lowerCase.contains("gió")) {
+            return "Gió giật";
+        } else if (lowerCase.contains("lốc")) {
+            return "Lốc xoáy";
+        }
+
+        // Fallback: trả về text gốc với chữ cái đầu viết hoa
+        System.out.println("Unprocessed weather description: " + description);
+        return capitalizeFirst(description);
+    }
+
+    // Helper method để viết hoa chữ cái đầu
+    private String capitalizeFirst(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
     public String translateWeather(String en){
-        switch (en.toLowerCase()){
+        String lowerCase = en.toLowerCase().trim();
+        System.out.println("Translating weather: '" + en + "' -> '" + lowerCase + "'");
+        switch (lowerCase){
+//            case "clear sky":
+//                return "Trời quang";
+//            case "few clouds":
+//                return "Ít mây";
+//            case "scattered clouds":
+//                return "Mây bão";
+//            case "broken clouds":
+//                return "Mây nhiễu";
+//            case "shower rain":
+//                return "Mưa nhỏ";
+//            case "rain":
+//                return "Mưa";
+//            case "thunderstorm":
+//                return "Mưa dông";
+//            case "snow":
+//                return "Tuyết";
+//            case "mist":
+//                return "Sương mù";
+//            case "overcast clouds":
+//                return "Mây u ám";
+//            case "light rain":
+//                return "Mưa nhẹ";
+//            case "moderate rain":
+//                return "Mưa vừa";
+//            case "heavy intensity rain":
+//                return "Mưa to";
+//            case "thunderstorm with light rain":
+//                return "Dông kèm mưa nhỏ";
+//            case "thunderstorm with heavy rain":
+//                return "Dông kèm mưa to";
+//            case "drizzle":
+//                return "Mưa phùn";
+//            case "haze":
+//                return "Sương mù nhẹ";
+//            case "fog":
+//                return "Sương mù đặc";
+//            case "squalls":
+//                return "Gió Giật";
+//            case "tornado":
+//                return "Lốc xoáy";
+            // Clear sky variants
             case "clear sky":
+            case "clear":
                 return "Trời quang";
+
+            // Cloudy variants
             case "few clouds":
                 return "Ít mây";
             case "scattered clouds":
-                return "Mây bão";
+                return "Mây rải rác";
             case "broken clouds":
-                return "Mây nhiễu";
+                return "Mây nhiều";
+            case "overcast clouds":
+            case "overcast":
+                return "Mây u ám";
+
+            // Rain variants
+            case "light rain":
+            case "drizzle":
+            case "light intensity drizzle":
+                return "Mưa nhẹ";
             case "shower rain":
-                return "Mưa nhỏ";
             case "rain":
+            case "moderate rain":
                 return "Mưa";
+            case "heavy intensity rain":
+            case "heavy rain":
+                return "Mưa to";
+            case "very heavy rain":
+            case "extreme rain":
+                return "Mưa rất to";
+
+            // Thunderstorm variants
             case "thunderstorm":
                 return "Mưa dông";
-            case "snow":
-                return "Tuyết";
-            case "mist":
-                return "Sương mù";
-            case "overcast clouds":
-                return "Mây u ám";
-            case "light rain":
-                return "Mưa nhẹ";
-            case "moderate rain":
-                return "Mưa vừa";
-            case "heavy intensity rain":
-                return "Mưa to";
             case "thunderstorm with light rain":
                 return "Dông kèm mưa nhỏ";
+            case "thunderstorm with rain":
+                return "Dông kèm mưa";
             case "thunderstorm with heavy rain":
                 return "Dông kèm mưa to";
-            case "drizzle":
-                return "Mưa phùn";
+            case "light thunderstorm":
+                return "Dông nhẹ";
+            case "heavy thunderstorm":
+                return "Dông mạnh";
+
+            // Snow variants
+            case "snow":
+            case "light snow":
+                return "Tuyết";
+            case "heavy snow":
+                return "Tuyết dày";
+
+            // Atmosphere variants
+            case "mist":
             case "haze":
                 return "Sương mù nhẹ";
             case "fog":
-                return "Sương mù đặc";
+                return "Sương mù";
+            case "sand":
+            case "dust":
+                return "Bụi";
+            case "smoke":
+                return "Khói";
             case "squalls":
-                return "Gió Giật";
+                return "Gió giật";
             case "tornado":
                 return "Lốc xoáy";
 
-            default:return "Thời tiết phức tạp";
+            // Additional common descriptions
+            case "partly cloudy":
+                return "Có mây";
+            case "mostly cloudy":
+                return "Nhiều mây";
+            case "windy":
+                return "Gió";
+            case "breezy":
+                return "Gió nhẹ";
+
+            default:
+                System.out.println("Unknown weather description: " + en);
+                return "Thời tiết phức tạp";
         }
     }
 
 
-    public void setIconweather(){
-        String temp = textweather.getText().toString();
-        switch (temp){
-            case "Trời quang":
-                iconweather.setImageResource(R.drawable.sun);
-                break;
-            case "Ít mây":
-                iconweather.setImageResource(R.drawable.itmay);
-                break;
-            case "Mây bão":
-                iconweather.setImageResource(R.drawable.bao1);
-                break;
-            case "Mây nhiễu":
-                iconweather.setImageResource(R.drawable.nhieumay);
-                break;
-            case "Mưa nhỏ":
-                iconweather.setImageResource(R.drawable.muanho);
-                break;
-            case "Mưa":
-                iconweather.setImageResource(R.drawable.mua);
-                break;
-            case "Mưa dông":
-                iconweather.setImageResource(R.drawable.muadong);
-                break;
-            case "Tuyết":
-                iconweather.setImageResource(R.drawable.tuyet);
-                break;
-            case "Sương mù":
-                iconweather.setImageResource(R.drawable.suongmu);
-                break;
-            case "Mây u ám":
-                iconweather.setImageResource(R.drawable.mayuam);
-                break;
-            case "Mưa nhẹ":
-                iconweather.setImageResource(R.drawable.muanho);
-                break;
-            case "Mưa vừa":
-                iconweather.setImageResource(R.drawable.mua);
-                break;
-            case "Mưa to":
-                iconweather.setImageResource(R.drawable.mua);
-                break;
-            case "Dông kèm mưa nhỏ":
-                iconweather.setImageResource(R.drawable.mua);
-                break;
-            case "Dông kèm mưa to":
-                iconweather.setImageResource(R.drawable.mua);
-                break;
-            case "Mưa phùn":
-                iconweather.setImageResource(R.drawable.muanho);
-                break;
-            case "Sương mù nhẹ":
-                iconweather.setImageResource(R.drawable.suongmu);
-                break;
-            case "Sương mù đặc":
-                iconweather.setImageResource(R.drawable.suongmu);
-                break;
-            case "Gió Giật":
-                iconweather.setImageResource(R.drawable.giogiat);
-                break;
-            case "Lốc xoáy":
-                iconweather.setImageResource(R.drawable.bao1);
+//    public void setIconweather(String weatherText){
+////        String temp = textweather.getText().toString();
+//        switch (weatherText){
+//            case "Trời quang":
+//                iconweather.setImageResource(R.drawable.sun);
+//                break;
+//            case "Ít mây":
+//                iconweather.setImageResource(R.drawable.itmay);
+//                break;
+//            case "Mây bão":
+//                iconweather.setImageResource(R.drawable.bao1);
+//                break;
+//            case "Mây nhiễu":
+//                iconweather.setImageResource(R.drawable.nhieumay);
+//                break;
+//            case "Mưa nhỏ":
+//                iconweather.setImageResource(R.drawable.muanho);
+//                break;
+//            case "Mưa":
+//                iconweather.setImageResource(R.drawable.mua);
+//                break;
+//            case "Mưa dông":
+//                iconweather.setImageResource(R.drawable.muadong);
+//                break;
+//            case "Tuyết":
+//                iconweather.setImageResource(R.drawable.tuyet);
+//                break;
+//            case "Sương mù":
+//                iconweather.setImageResource(R.drawable.suongmu);
+//                break;
+//            case "Mây u ám":
+//                iconweather.setImageResource(R.drawable.mayuam);
+//                break;
+//            case "Mưa nhẹ":
+//                iconweather.setImageResource(R.drawable.muanho);
+//                break;
+//            case "Mưa vừa":
+//                iconweather.setImageResource(R.drawable.mua);
+//                break;
+//            case "Mưa to":
+//                iconweather.setImageResource(R.drawable.mua);
+//                break;
+//            case "Dông kèm mưa nhỏ":
+//                iconweather.setImageResource(R.drawable.mua);
+//                break;
+//            case "Dông kèm mưa to":
+//                iconweather.setImageResource(R.drawable.mua);
+//                break;
+//            case "Mưa phùn":
+//                iconweather.setImageResource(R.drawable.muanho);
+//                break;
+//            case "Sương mù nhẹ":
+//                iconweather.setImageResource(R.drawable.suongmu);
+//                break;
+//            case "Sương mù đặc":
+//                iconweather.setImageResource(R.drawable.suongmu);
+//                break;
+//            case "Gió Giật":
+//                iconweather.setImageResource(R.drawable.giogiat);
+//                break;
+//            case "Lốc xoáy":
+//                iconweather.setImageResource(R.drawable.bao1);
+//
+//            default: iconweather.setImageResource(R.drawable.sun);
+//        }
+//        System.out.println("Weather text: " + weatherText);
+//    }
 
-            default: iconweather.setImageResource(R.drawable.sun);
-        }
+public void setIconweather(String weatherText){
+    String lowerWeather = weatherText.toLowerCase().trim();
+
+    if (lowerWeather.contains("trời quang") || lowerWeather.contains("trong")) {
+        iconweather.setImageResource(R.drawable.sun);
+    } else if (lowerWeather.contains("ít mây")) {
+        iconweather.setImageResource(R.drawable.itmay);
+    } else if (lowerWeather.contains("mây rải rác") || lowerWeather.contains("mây bão")) {
+        iconweather.setImageResource(R.drawable.bao1);
+    } else if (lowerWeather.contains("mây nhiều") || lowerWeather.contains("mây cụm")) {
+        iconweather.setImageResource(R.drawable.nhieumay);
+    } else if (lowerWeather.contains("mây u ám") || lowerWeather.contains("u ám")) {
+        iconweather.setImageResource(R.drawable.mayuam);
+    } else if (lowerWeather.contains("mưa nhẹ") || lowerWeather.contains("mưa phùn")) {
+        iconweather.setImageResource(R.drawable.muanho);
+    } else if (lowerWeather.contains("mưa to") || lowerWeather.contains("mưa nặng") ||
+            lowerWeather.contains("mưa cường độ")) {
+        iconweather.setImageResource(R.drawable.mua);
+    } else if (lowerWeather.contains("mưa") && !lowerWeather.contains("dông")) {
+        iconweather.setImageResource(R.drawable.mua);
+    } else if (lowerWeather.contains("dông")) {
+        iconweather.setImageResource(R.drawable.muadong);
+    } else if (lowerWeather.contains("tuyết")) {
+        iconweather.setImageResource(R.drawable.tuyet);
+    } else if (lowerWeather.contains("sương mù")) {
+        iconweather.setImageResource(R.drawable.suongmu);
+    } else if (lowerWeather.contains("gió")) {
+        iconweather.setImageResource(R.drawable.giogiat);
+    } else if (lowerWeather.contains("lốc")) {
+        iconweather.setImageResource(R.drawable.bao1);
+    } else {
+        iconweather.setImageResource(R.drawable.sun);
     }
+
+    // Debug log để kiểm tra
+    System.out.println("Weather text: " + weatherText + " -> Icon set");
+}
 
     private void loadEvents(){
         SharedPreferences prefs = getSharedPreferences("events_prefs", MODE_PRIVATE);

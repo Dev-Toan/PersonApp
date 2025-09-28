@@ -47,7 +47,7 @@
                 android:id="@+id/nhietdo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="25 °C"
+                android:text="---°C"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="bold"
@@ -57,7 +57,7 @@
                 android:id="@+id/textweather"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mưa nhỏ"
+                android:text="---"
                 android:textColor="@color/white"
                 android:textStyle="italic|bold"
                 android:textSize="15sp"/>

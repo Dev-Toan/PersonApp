@@ -298,7 +298,8 @@ public class weatherActivity extends AppCompatActivity {
 
     public void fetchWeather(double currentLat, double currentLon) {
         //String city = "Hanoi";
-        String key = "fd9e8f768d512169fd4e64dafcc20a12";
+//        String key = "fd9e8f768d512169fd4e64dafcc20a12";
+        String key = ApiLinhTinh.WeatherKey;
         String url = "https://api.openweathermap.org/data/2.5/forecast?lat=" + currentLat + "&lon=" + currentLon + "&appid=" + key + "&units=metric&lang=vi";
         //String url = "https://api.openweathermap.org/data/2.5/uvi?lat=" + currentLat + "&lon=" + currentLon + "&appid=" + key;
         //String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key+ "&units=metric";
@@ -368,12 +369,31 @@ public class weatherActivity extends AppCompatActivity {
                                 if (tempToday != -1 && tempTomorrow != -1) break;
                             }
 
-                            txtNhietDo.setText(String.format("%.0f °C", tempToday));
-                            txtItmay.setText(translateWeather(descriptionToday));
-                            txtItmay.setText(descriptionToday);
 
-                            txtIconWeather.setImageResource(getResources().getIdentifier(converIconWeather(translateWeather(descriptionToday)), "drawable", getPackageName()));
-                            imgvIconWeatherNow.setImageResource(getResources().getIdentifier(converIconWeather(translateWeather(descriptionToday)), "drawable", getPackageName()));
+                            // Xử lý thời tiết tiếng Việt
+                            String processedTodayWeather = processVietnameseWeather(descriptionToday);
+                            String processedTomorrowWeather = processVietnameseWeather(descriptionTomorrow);
+
+                            System.out.println("Today weather: " + descriptionToday + " -> " + processedTodayWeather);
+                            System.out.println("Tomorrow weather: " + descriptionTomorrow + " -> " + processedTomorrowWeather);
+
+                            txtNhietDo.setText(String.format("%.0f °C", tempToday));
+//                            txtItmay.setText(translateWeather(descriptionToday));
+//                            txtItmay.setText(descriptionToday);
+                            txtItmay.setText(processedTodayWeather);
+
+                            // Set icon dựa trên text đã xử lý
+                            String todayIcon = converIconWeather(processedTodayWeather);
+                            String tomorrowIcon = converIconWeather(processedTomorrowWeather);
+
+
+
+                            txtIconWeather.setImageResource(getResources().getIdentifier(todayIcon, "drawable", getPackageName()));
+                            imgvIconWeatherNow.setImageResource(getResources().getIdentifier(todayIcon, "drawable", getPackageName()));
+                            imgvIconWeatherNext.setImageResource(getResources().getIdentifier(tomorrowIcon, "drawable", getPackageName()));
+
+//                            txtIconWeather.setImageResource(getResources().getIdentifier(converIconWeather(translateWeather(descriptionToday)), "drawable", getPackageName()));
+//                            imgvIconWeatherNow.setImageResource(getResources().getIdentifier(converIconWeather(translateWeather(descriptionToday)), "drawable", getPackageName()));
 
                             txtDoAm.setText(String.valueOf(humidityToday) + "%");
                             txtApSuat.setText(String.valueOf(pressureToday) + " hPa");
@@ -381,7 +401,7 @@ public class weatherActivity extends AppCompatActivity {
 
                             txtNhietDoNow.setText(String.format("%.0f°C", tempToday));
                             txtNhietDoNext.setText(String.format("%.0f°C", tempTomorrow));
-                            imgvIconWeatherNext.setImageResource(getResources().getIdentifier(converIconWeather(translateWeather(descriptionTomorrow)), "drawable", getPackageName()));
+//                            imgvIconWeatherNext.setImageResource(getResources().getIdentifier(converIconWeather(translateWeather(descriptionTomorrow)), "drawable", getPackageName()));
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -405,8 +425,59 @@ public class weatherActivity extends AppCompatActivity {
     }
 
 
+
+    public String processVietnameseWeather(String description){
+        String lowerCase = description.toLowerCase().trim();
+
+        System.out.println("Processing weather: '" + description + "' -> '" + lowerCase + "'");
+
+        if (lowerCase.contains("trời quang") || lowerCase.contains("trời trong")) {
+            return "Trời quang";
+        } else if (lowerCase.contains("ít mây")) {
+            return "Ít mây";
+        } else if (lowerCase.contains("mây rải rác") || lowerCase.contains("mây tản mạn")) {
+            return "Mây rải rác";
+        } else if (lowerCase.contains("mây cụm") || lowerCase.contains("mây nhiều")) {
+            return "Mây nhiều";
+        } else if (lowerCase.contains("mây u ám") || lowerCase.contains("u ám")) {
+            return "Mây u ám";
+        } else if (lowerCase.contains("mưa nhẹ") || lowerCase.contains("mưa phùn")) {
+            return "Mưa nhẹ";
+        } else if (lowerCase.contains("mưa vừa") || lowerCase.equals("mưa")) {
+            return "Mưa";
+        } else if (lowerCase.contains("mưa to") || lowerCase.contains("mưa nặng") ||
+                lowerCase.contains("mưa cường độ nặng") || lowerCase.contains("mưa dữ dội")) {
+            return "Mưa to";
+        } else if (lowerCase.contains("dông") || lowerCase.contains("sấm")) {
+            return "Mưa dông";
+        } else if (lowerCase.contains("tuyết")) {
+            return "Tuyết";
+        } else if (lowerCase.contains("sương mù")) {
+            return "Sương mù";
+        } else if (lowerCase.contains("sương") || lowerCase.contains("mù")) {
+            return "Sương mù nhẹ";
+        } else if (lowerCase.contains("gió")) {
+            return "Gió giật";
+        } else if (lowerCase.contains("lốc")) {
+            return "Lốc xoáy";
+        }
+
+        System.out.println("Unprocessed weather description: " + description);
+        return capitalizeFirst(description);
+    }
+
+    // Helper method để viết hoa chữ cái đầu
+    private String capitalizeFirst(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+
     public void fetchUVIndex(double currentLat, double currentLon) {
-        String key = "fd9e8f768d512169fd4e64dafcc20a12";
+//        String key = "fd9e8f768d512169fd4e64dafcc20a12";
+        String key = ApiLinhTinh.WeatherKey;
 
         //String url = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + key;
         String url = "https://api.openweathermap.org/data/2.5/uvi?lat=" + currentLat + "&lon=" + currentLon + "&appid=" + key;
@@ -445,7 +516,8 @@ public class weatherActivity extends AppCompatActivity {
 
     public void fetchCurrentWeather(double currentLat, double currentLon) {
 //        String city = "Hanoi";
-        String key = "fd9e8f768d512169fd4e64dafcc20a12";
+//        String key = "fd9e8f768d512169fd4e64dafcc20a12";
+        String key = ApiLinhTinh.WeatherKey;
         //String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key + "&units=metric";
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + currentLat + "&lon=" + currentLon + "&appid=" + key + "&units=metric";
 //        String url = apiUrl;
@@ -501,65 +573,38 @@ public class weatherActivity extends AppCompatActivity {
 
 
     public String converIconWeather(String text){
-        String temp = "sun";
-        switch (text){
-            case "Trời quang":
-                temp ="sun";
-                break;
-            case "Ít mây":
-                temp ="itmay";
-                break;
-            case "Lốc xoáy":
-            case "Mây bão":
-                temp="bao1";
-                break;
-            case "Mây nhiễu":
-                temp="nhieumay";
-                break;
-            case "Mưa nhỏ":
-                temp="muanho";
-                break;
-            case "Mưa":
-                temp="mua";
-                break;
-            case "Mưa dông":
-                temp="muadong";
-                break;
-            case "Tuyết":
-                temp="tuyet";
-                break;
-            case "Sương mù":
-                temp="suongmu";
-                break;
-            case "Mây u ám":
-                temp="mayuam";
-                break;
-            case "Mưa nhẹ":
-                temp="muanho";
-                break;
-            case "Mưa to":
-            case "Dông kèm mưa to":
-            case "Dông kèm mưa nhỏ":
-            case "Mưa vừa":
-                temp="mua";
-                break;
-            case "Mưa phùn":
-                temp="muanho";
-                break;
-            case "Sương mù đặc":
-            case "Sương mù nhẹ":
-                temp="suongmu";
-                break;
-            case "Gió Giật":
-                temp="giogiat";
-                break;
+        String lowerText = text.toLowerCase().trim();
 
-            default:
-                temp="sun";
+        if (lowerText.contains("trời quang") || lowerText.contains("trong")) {
+            return "sun";
+        } else if (lowerText.contains("ít mây")) {
+            return "itmay";
+        } else if (lowerText.contains("lốc") || lowerText.contains("mây bão") || lowerText.contains("mây rải rác")) {
+            return "bao1";
+        } else if (lowerText.contains("mây nhiều") || lowerText.contains("mây cụm")) {
+            return "nhieumay";
+        } else if (lowerText.contains("mây u ám") || lowerText.contains("u ám")) {
+            return "mayuam";
+        } else if (lowerText.contains("mưa nhẹ") || lowerText.contains("mưa phùn")) {
+            return "muanho";
+        } else if (lowerText.contains("mưa to") || lowerText.contains("mưa nặng") ||
+                lowerText.contains("mưa cường độ") || lowerText.contains("mưa dữ dội") ||
+                lowerText.contains("mưa vừa") || lowerText.contains("dông kèm")) {
+            return "mua";
+        } else if (lowerText.contains("mưa") && !lowerText.contains("dông")) {
+            return "mua";
+        } else if (lowerText.contains("dông")) {
+            return "muadong";
+        } else if (lowerText.contains("tuyết")) {
+            return "tuyet";
+        } else if (lowerText.contains("sương mù")) {
+            return "suongmu";
+        } else if (lowerText.contains("gió")) {
+            return "giogiat";
+        } else {
+            return "sun";
         }
-        return temp;
     }
-
 
 
 
