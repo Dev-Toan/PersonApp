@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
 
     <application
         android:allowBackup="true"
@@ -19,6 +19,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonApp"
         tools:targetApi="31">
+        <activity
+            android:name=".BamGioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DemGioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoopDayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityAddClock"
+            android:exported="false" />
+        <activity
+            android:name=".ClockActivity"
+            android:exported="false" />
         <activity
             android:name=".weatherActivity"
             android:exported="false" />

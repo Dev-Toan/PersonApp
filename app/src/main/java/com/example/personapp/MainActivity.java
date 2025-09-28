@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Button btnViewCalendar;
-    Button btnViewAllEvent, btnWeather;
+    Button btnViewAllEvent, btnWeather, btnClock;
 
 
     @Override
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btnViewCalendar = findViewById(R.id.btnViewCalendar);
         btnViewAllEvent = findViewById(R.id.btnViewAllEvent);
         btnWeather = findViewById(R.id.btnWeather);
+        btnClock = findViewById(R.id.btnClock);
 
 
         btnViewCalendar.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+
+        btnClock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ClockActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
 
 
     }

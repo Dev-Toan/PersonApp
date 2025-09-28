@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClockActivity"
+    android:background="@drawable/bg_gradien">
+
+    <!-- Nội dung chính -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#00000000"
+                android:contentDescription="Back"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/btn_back" />
+
+            <TextView
+                android:id="@+id/txtBaoThuc"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Báo thức" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtTitleMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tất cả báo thức đều tắt"
+            android:gravity="center"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEvents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="35dp"
+            android:layout_marginTop="20dp"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="#40FFCCCC"
+        >
+
+        <TextView
+            android:id="@+id/txtBaoThuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Báo thức"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtDemGio"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Đếm giờ"
+            android:textSize="20sp"
+            android:textColor="#444444"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtBamGio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bấm giờ"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#444444"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="#808080"
+        android:contentDescription="Thêm mới"
+        app:backgroundTint="#6200EE"
+        app:fabSize="normal"
+        app:maxImageSize="50dp"
+        app:srcCompat="@drawable/ic_add"
+        app:tint="@android:color/white"
+        />
+
+
+
+</RelativeLayout>

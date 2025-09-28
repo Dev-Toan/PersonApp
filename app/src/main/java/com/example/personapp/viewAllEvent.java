@@ -355,27 +355,29 @@ public class viewAllEvent extends AppCompatActivity implements PopupMenuHelper.P
                     saveEvents();
                     Toast.makeText(this, "Đã thêm sự kiện!", Toast.LENGTH_SHORT).show();
                 }
-            } else if (requestCode == 2) { // Edit event
+            }
+            else if (requestCode == 2) { // Edit event
                 Event updatedEvent = (Event) data.getSerializableExtra("event");
                 int position = data.getIntExtra("position", -1);
-                
+
                 if (position != -1 && updatedEvent != null) {
                     // Cập nhật sự kiện trong danh sách
                     events.set(position, updatedEvent);
                     sortEventsByDateTime();
-                    
+
                     // Cập nhật notification nếu cần
                     if (updatedEvent.isNotification()) {
                         schedeleEventNotification(this, updatedEvent, updatedEvent.hashCode());
                     } else {
                         cancelEventNotification(this, updatedEvent.hashCode());
                     }
-                    
+
                     updateFilteredEvents();
                     saveEvents();
                     Toast.makeText(this, "Đã cập nhật sự kiện!", Toast.LENGTH_SHORT).show();
                 }
             }
+
         }
     }
 
@@ -401,8 +403,51 @@ public class viewAllEvent extends AppCompatActivity implements PopupMenuHelper.P
             events.addAll(loadedEvents);
             sortEventsByDateTime();
         }
+        
 
+        if (events.isEmpty()) {
+            Toast.makeText(this, "Không có sự kiện nào!", Toast.LENGTH_SHORT).show();
+        }
     }
+    
+//    private void createDefaultEvent() {
+//        // Tạo sự kiện "đi học" vào lúc 9:00
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.HOUR_OF_DAY, 9);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        calendar.set(Calendar.MILLISECOND, 0);
+//
+//        // Nếu thời gian hiện tại đã qua 9:00, đặt cho ngày mai
+//        if (calendar.getTime().before(new Date())) {
+//            calendar.add(Calendar.DAY_OF_MONTH, 1);
+//        }
+//
+//        Date eventDate = calendar.getTime();
+//        Time startTime = new Time(9, 0, 0);
+//        Time endTime = new Time(10, 0, 0); // Kết thúc lúc 10:00
+//
+//        Event defaultEvent = new Event(
+//            endTime,
+//            eventDate,
+//            "Học tập tại trường",
+//            startTime,
+//            false, // Chưa hoàn thành
+//            "Đi học",
+//            true,  // Đang hoạt động
+//            true   // Có thông báo
+//        );
+//
+//        events.add(defaultEvent);
+//        sortEventsByDateTime();
+//        saveEvents();
+//
+//        // Cập nhật RecyclerView để hiển thị sự kiện mặc định
+//        updateFilteredEvents();
+//
+//        // Thiết lập thông báo cho sự kiện mặc định
+//        schedeleEventNotification(this, defaultEvent, defaultEvent.hashCode());
+//    }
 
     public void sortEventsByDateTime() {
         events.sort((e1, e2) -> {
@@ -542,6 +587,8 @@ public class viewAllEvent extends AppCompatActivity implements PopupMenuHelper.P
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
+
+        Toast.makeText(context, "Đã hủy thông báo", Toast.LENGTH_SHORT).show();
     }
 
 

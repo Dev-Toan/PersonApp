@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="TimePickerBlackTheme" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="android:background">#00000000</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#777777</item>
+    </style>
 
 
 

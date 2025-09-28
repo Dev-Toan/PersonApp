@@ -20,6 +20,13 @@ public class EventNotification extends BroadcastReceiver {
             title ="su kien sap dien ra";
         }
 
+        String content = intent.getStringExtra("content");
+        if(content != null && content.length() > 30){
+            content = content.substring(0,30 ) + "...";
+        }else {
+            content = title;
+        }
+
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         String channelId = "event_channel";
@@ -52,7 +59,7 @@ public class EventNotification extends BroadcastReceiver {
 
         builder.setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("📅 " + title)
-                .setContentText(title)
+                .setContentText(content)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(title))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_REMINDER)

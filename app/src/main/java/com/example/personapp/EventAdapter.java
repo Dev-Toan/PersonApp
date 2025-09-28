@@ -130,6 +130,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             }
         });
 
+
+
         holder.btnMore.setOnClickListener(v -> {
             if (context instanceof PopupMenuHelper.PopupMenuListener) {
                 PopupMenuHelper.showPopupMenu(context, v, event, position, (PopupMenuHelper.PopupMenuListener) context);
