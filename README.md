@@ -9,6 +9,8 @@
 - Xem thời tiết ngày đẹp và dự báo nhiều ngày (`weatherActivity`, `ViewFineDayWeatherActivity`, `ForecastAdapter`).
 - Màn hình lặp theo ngày, hiển thị thông tin thời gian (`LoopDayActivity`).
 
+  
+
 ## Yêu cầu môi trường
 - Android Studio mới nhất (Giraffe/Iguana hoặc mới hơn).
 - JDK 17 (khuyến nghị, tùy theo cấu hình Android Gradle Plugin).
@@ -74,7 +76,13 @@ Kiểm tra các lớp như `ApiLinhTinh.java`, `weatherActivity.java` để xác
 - Lỗi phiên bản JDK/AGP: nâng cấp Android Studio và chọn JDK 17 trong Project Structure.
 - Build thất bại không rõ nguyên nhân: thử `./gradlew.bat clean` rồi build lại.
 
-## Giấy phép
-Thêm thông tin giấy phép hoặc quyền tác giả của bạn tại đây.
+## 📧 Liên hệ
+
+* GitHub: [Dev-Toan](https://github.com/Dev-Toan)
+* Repo: [ATBMTT](https://github.com/Dev-Toan/ATBMTT)
+
+---
+
+✨ Cảm ơn bạn đã ghé thăm repo! Hy vọng dự án giúp ích cho việc học tập và nghiên cứu của bạn.
 
 
