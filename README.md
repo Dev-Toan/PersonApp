@@ -9,7 +9,7 @@
 - Xem thời tiết ngày đẹp và dự báo nhiều ngày (`weatherActivity`, `ViewFineDayWeatherActivity`, `ForecastAdapter`).
 - Màn hình lặp theo ngày, hiển thị thông tin thời gian (`LoopDayActivity`).
 
-- <img width="545" height="982" alt="image" src="https://github.com/user-attachments/assets/577201d1-3a91-4978-9b71-6dae7409ddb6" />
+<img width="545" height="982" alt="image" src="https://github.com/user-attachments/assets/577201d1-3a91-4978-9b71-6dae7409ddb6" />
 
 <img width="541" height="983" alt="image" src="https://github.com/user-attachments/assets/3c669fa5-ec74-476b-ba5a-4255f3db44eb" />
 <img width="546" height="986" alt="image" src="https://github.com/user-attachments/assets/39da7fdc-08ba-4b61-acf3-3de8505c10c1" />
