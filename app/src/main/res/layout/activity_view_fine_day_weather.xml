@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradien"
+    tools:context=".ViewFineDayWeatherActivity">
+
+    <!-- HEADER - Tiêu đề cho trang Dự báo 5 ngày -->
+
+    <!-- Nút Quay lại -->
+    <ImageButton
+        android:id="@+id/imgBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="#00000000"
+        android:contentDescription="Back"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvScreenTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/tvScreenTitle"
+        app:srcCompat="@drawable/btn_back" />
+
+    <TextView
+        android:id="@+id/tvScreenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Dự báo thời tiết 5 ngày tới"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 1. THẺ BIỂU ĐỒ NẮNG MƯA (Placeholder cho Chart) -->
+    <!-- Khu vực này dùng để hiển thị biểu đồ trực quan (như đồ thị đường) về nhiệt độ và lượng mưa/nắng -->
+    <TextView
+        android:id="@+id/txtGlobal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HANOI"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardWeatherChart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardWeatherChart"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginHorizontal="24dp"
+        app:cardBackgroundColor="#3B506D"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvScreenTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biểu đồ dự báo Nắng &amp; Mưa"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Placeholder cho khu vực biểu đồ (Trong thực tế sẽ là Custom View hoặc thư viện Chart) -->
+            <View
+                android:id="@+id/chartPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#5C7A99" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <!-- 2. DỰ BÁO 5 NGÀY (Sử dụng ScrollView bên trong CardView để cuộn) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card5DayForecast"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginHorizontal="24dp"
+        app:cardBackgroundColor="#3B506D"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardWeatherChart"
+        app:layout_constraintVertical_bias="0">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvLocationHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dự báo 5 ngày tới"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- RecyclerView cho dự báo 5 ngày -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewForecast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingVertical="8dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="8dp">
+
+    <!-- Ngày -->
+    <TextView
+        android:id="@+id/tvDayOfWeek"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="Thứ Ba"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        />
+
+    <!-- Icon thời tiết -->
+    <ImageView
+        android:id="@+id/imgDayIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:src="@drawable/icon_water"
+        app:tint="#90CAF9"
+        android:contentDescription="Daily Weather Icon"/>
+
+    <!-- Nhiệt độ thấp/cao -->
+    <TextView
+        android:id="@+id/tvMinMaxTemp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="end"
+        android:text="20° / 25°"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"/>
+</LinearLayout>

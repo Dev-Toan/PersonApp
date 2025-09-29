@@ -3,6 +3,7 @@ package com.example.personapp;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -11,6 +12,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -106,6 +108,14 @@ public class weatherActivity extends AppCompatActivity {
         //txtGlobal.setText("---");
 
 
+        btn5daynext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(weatherActivity.this, ViewFineDayWeatherActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
 
         btnBack.setOnClickListener(v -> {
             finish();
@@ -162,7 +172,7 @@ public class weatherActivity extends AppCompatActivity {
     }
 
 
-    private void getWardNameFromLocation(double lat, double lon) {
+    public void getWardNameFromLocation(double lat, double lon) {
         String url = String.format(Locale.US,
                 "https://nominatim.openstreetmap.org/reverse?" +
                         "lat=%.9f&lon=%.9f&format=json&accept-language=vi&zoom=18&addressdetails=1",
@@ -234,7 +244,7 @@ public class weatherActivity extends AppCompatActivity {
      * 2. Quận/Huyện (city_district, district, county, state_district)
      * 3. Tỉnh/Thành phố (city, town, municipality, state, province)
      */
-    private String getAdministrativeUnit(JSONObject address) {
+    public String getAdministrativeUnit(JSONObject address) {
         // Ưu tiên 1: Phường/Xã/Thị trấn
         String[] wardKeys = {
                 "suburb",           // Phường (thường dùng ở thành phố lớn)
