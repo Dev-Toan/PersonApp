@@ -8,18 +8,23 @@
 - Lịch và quản lý sự kiện (thêm/sửa/xóa, xem tất cả sự kiện) (`CalendarActivity`, `AddEvent`, `viewAllEvent`).
 - Xem thời tiết ngày đẹp và dự báo nhiều ngày (`weatherActivity`, `ViewFineDayWeatherActivity`, `ForecastAdapter`).
 - Màn hình lặp theo ngày, hiển thị thông tin thời gian (`LoopDayActivity`).
-
-<img width="545" height="982" alt="image" src="https://github.com/user-attachments/assets/577201d1-3a91-4978-9b71-6dae7409ddb6" />
-
-<img width="541" height="983" alt="image" src="https://github.com/user-attachments/assets/3c669fa5-ec74-476b-ba5a-4255f3db44eb" />
-<img width="546" height="986" alt="image" src="https://github.com/user-attachments/assets/39da7fdc-08ba-4b61-acf3-3de8505c10c1" />
-<img width="548" height="986" alt="image" src="https://github.com/user-attachments/assets/9343a2c3-e5a0-472a-be90-695aa5aaddf9" />
-<img width="544" height="982" alt="image" src="https://github.com/user-attachments/assets/ad649b2f-7b6e-4cf8-b5ad-4ddba32f142f" />
-<img width="547" height="980" alt="image" src="https://github.com/user-attachments/assets/f110a489-6183-44ca-b517-af7face49f7e" />
-<img width="545" height="988" alt="image" src="https://github.com/user-attachments/assets/ab2986f4-2de4-40ef-984f-655163399d7e" />
-<img width="544" height="984" alt="image" src="https://github.com/user-attachments/assets/3d7632d6-82a5-465f-b0ce-06f3dd2f409f" />
-<img width="545" height="980" alt="image" src="https://github.com/user-attachments/assets/35b1d1b7-ddfb-44a8-89a1-d03502b4bb6f" />
-<img width="549" height="983" alt="image" src="https://github.com/user-attachments/assets/ea4173a2-f20c-4c8c-8cc6-2f64a923d2d1" />
+## 📸 Screenshots
+<p align="center">
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/577201d1-3a91-4978-9b71-6dae7409ddb6" />
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/3c669fa5-ec74-476b-ba5a-4255f3db44eb" />
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/39da7fdc-08ba-4b61-acf3-3de8505c10c1" />
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/9343a2c3-e5a0-472a-be90-695aa5aaddf9" />
+</p>
+<p align="center">
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/ad649b2f-7b6e-4cf8-b5ad-4ddba32f142f" />
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/f110a489-6183-44ca-b517-af7face49f7e" />
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/ab2986f4-2de4-40ef-984f-655163399d7e" />
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/3d7632d6-82a5-465f-b0ce-06f3dd2f409f" />
+</p>
+<p align="center">
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/35b1d1b7-ddfb-44a8-89a1-d03502b4bb6f" />
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/ea4173a2-f20c-4c8c-8cc6-2f64a923d2d1" />
+</p>
 
 
 
