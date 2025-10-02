@@ -86,7 +86,7 @@ app/build/outputs/apk/debug/app-debug.apk
 ## 📧 Liên hệ
 
 * GitHub: [Dev-Toan](https://github.com/Dev-Toan)
-* Repo: [ATBMTT](https://github.com/Dev-Toan/ATBMTT)
+
 
 ---
 
