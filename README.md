@@ -78,19 +78,6 @@ APK debug sau khi build thường nằm tại:
 app/build/outputs/apk/debug/app-debug.apk
 ```
 
-## Cấu hình API/Secrets (nếu có)
-Tính năng thời tiết có thể cần API key. Vui lòng cập nhật theo cách dự án của bạn đang dùng. Gợi ý:
-
-- Lưu vào `local.properties` (không commit):
-  ```
-  WEATHER_API_KEY=your_key_here
-  ```
-  Sau đó đọc trong Gradle và truyền vào BuildConfig.
-
-- Hoặc lưu trong `res/values/strings.xml` (ít an toàn hơn) rồi truy xuất qua `getString(R.string.your_key)`.
-
-Kiểm tra các lớp như `ApiLinhTinh.java`, `weatherActivity.java` để xác định nơi sử dụng và cách truyền khóa.
-
 ## Khắc phục sự cố
 - Gradle sync lỗi SDK: đảm bảo `local.properties` có dòng `sdk.dir=C:\\Android\\Sdk` (đúng đường dẫn máy bạn).
 - Lỗi phiên bản JDK/AGP: nâng cấp Android Studio và chọn JDK 17 trong Project Structure.
