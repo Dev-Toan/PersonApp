@@ -8,6 +8,7 @@
 - Lịch và quản lý sự kiện (thêm/sửa/xóa, xem tất cả sự kiện) (`CalendarActivity`, `AddEvent`, `viewAllEvent`).
 - Xem thời tiết ngày đẹp và dự báo nhiều ngày (`weatherActivity`, `ViewFineDayWeatherActivity`, `ForecastAdapter`).
 - Màn hình lặp theo ngày, hiển thị thông tin thời gian (`LoopDayActivity`).
+- Tự động lấy vị trí hiện tại để cập nhật thông tin thời tiết
 ## 📸 Screenshots
 <p align="center">
   <img width="200" alt="image" src="https://github.com/user-attachments/assets/577201d1-3a91-4978-9b71-6dae7409ddb6" />
